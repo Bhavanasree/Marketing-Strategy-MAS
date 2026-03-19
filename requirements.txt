@@ -1,0 +1,11 @@
+langgraph>=0.2
+langchain-aws>=0.2
+langchain-core>=0.3
+python-dotenv>=1.0
+boto3>=1.34
+streamlit>=1.35
+
+
+# structure of project
+# agents/
+# graph-> build->state->prompt/
