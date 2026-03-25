@@ -5,8 +5,15 @@ import random
 import boto3
 from botocore.exceptions import ClientError
 from langchain_core.tools import tool
+import os
+from datetime import datetime
+import re
+
 
 logger = logging.getLogger(__name__)
+
+LOGO_DIR = "generated_logos"
+os.makedirs(LOGO_DIR, exist_ok=True)
 
 
 class ImageError(Exception):
@@ -31,6 +38,16 @@ def _generate_image(body: str) -> bytes:
     return base64.b64decode(base64_image.encode("ascii"))
 
 
+def generate_logo_filename(business_name: str) -> str:
+    # Clean business name (remove spaces/special chars)
+    clean_name = re.sub(r'[^a-zA-Z0-9]', '_', business_name).lower()
+
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+    filename = f"logo_{clean_name}_{timestamp}.png"
+    return os.path.join(LOGO_DIR, filename)
+
+
 @tool
 def generate_logo(business_name: str) -> str:
     """Generate a professional logo for a business using Amazon Titan Image Generator.
@@ -53,11 +70,14 @@ def generate_logo(business_name: str) -> str:
     })
     try:
         image_bytes = _generate_image(body)
-        output_path = "logo.png"
+        output_path = generate_logo_filename(business_name)
         with open(output_path, "wb") as f:
             f.write(image_bytes)
         logger.info("Successfully generated logo for %s", business_name)
-        return f"Logo generated successfully for {business_name}! The logo is saved to {output_path}."
+        return {
+            "text": f"✅ Logo generated successfully for {business_name}!",
+            "logo_path": output_path
+        }
     except (ClientError, ImageError) as e:
         msg = e.message if isinstance(e, ImageError) else e.response["Error"]["Message"]
         logger.error("Error generating logo: %s", msg)

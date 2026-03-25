@@ -12,24 +12,25 @@ def generate_seo_keywords(business_name: str) -> str:
 
     response =  _llm.invoke([
         HumanMessage(content=(
-            f"Create ad copy for the business below, covering multiple ad formats.\n\n"
-            f"**Google Search Ads** (3 variations):\n"
-            f"- Headline 1 (max 30 chars)\n"
-            f"- Headline 2 (max 30 chars)\n"
-            f"- Headline 3 (max 30 chars)\n"
-            f"- Description 1 (max 90 chars)\n"
-            f"- Description 2 (max 90 chars)\n\n"
-            f"**Social Media Ads** (2 variations for Facebook/Instagram):\n"
-            f"- Primary text (compelling hook + value proposition)\n"
-            f"- Headline\n"
-            f"- Description\n"
-            f"- CTA button suggestion\n\n"
-            f"**LinkedIn Sponsored Post** (1 variation):\n"
-            f"- Post text (professional tone, under 150 words)\n"
-            f"- CTA\n\n"
-            f"Make all copy persuasive, benefit-focused, and action-oriented.\n\n"
-            f"Business Name: {business_name}\n\n"
-            f"Generate ad copy:"
+            f"Generate SEO content for the business below.\n\n"
+
+            f"1. PRIMARY KEYWORDS (10 high-intent keywords)\n"
+            f"2. LONG-TAIL KEYWORDS (10 specific search phrases)\n"
+            f"3. LOCAL SEO KEYWORDS (5 location-based variations if applicable)\n\n"
+
+            f"4. META TITLE (max 60 characters)\n"
+            f"5. META DESCRIPTION (max 155 characters, compelling and click-worthy)\n\n"
+
+            f"6. CONTENT IDEAS (5 blog/article topics optimized for SEO)\n\n"
+
+            f"Guidelines:\n"
+            f"- Focus on search intent (informational + transactional)\n"
+            f"- Use clear, relevant, and realistic keywords\n"
+            f"- Avoid generic terms\n"
+            f"- Make meta description engaging with a call-to-action\n\n"
+
+            f"Business Name: {business_name}\n"
+            f"Generate Seo Keywords:"
         ))
     ])
     return response.content
