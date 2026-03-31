@@ -299,8 +299,6 @@ def show_app():
         """Stream tokens from the graph using astream_events."""
         full_response = ""
         placeholder = st.empty()
-        is_tool_turn = False 
-        logo_generated = False # 🚀 Track if logo agent was ever called
 
         with st.spinner("Analyzing and building brand assets..."):
             async for event in graph.astream_events(
