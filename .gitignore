@@ -29,5 +29,9 @@ Thumbs.db
 # Streamlit
 .streamlit/
 
+# Generated outputs
+generated_logos/
+*.pdf
+
 # Claude Code
 .claude/

@@ -14,14 +14,14 @@ def get_domain_suggestions(business_name:str)->str:
     response= _llm.invoke([
        HumanMessage(content=(
              f"Generate 10 unique domain names based on the business name provided.\n\n"
-            f"Requirements:\n"
-            f"- Use the exact business name (if available as .com)\n"
-            f"- Add common business suffixes: app, hub, pro, tech, online, digital, solutions, services\n"
-            f"- Use abbreviations or shortened versions of the business name\n"
-            f"- Focus primarily on .com domains, with some .net, .org, or .io alternatives\n"
-            f"- Output a numbered list of exactly 10 domain names\n\n"
-            f"Business Name: {business_name}\n\n"
-            f"Generate 10 domain names:"
+             f"Requirements:\n"
+             f"- Use the exact business name (if available as .com)\n"
+             f"- Add common business suffixes: app, hub, pro, tech, online, digital, solutions, services\n"
+             f"- Use abbreviations or shortened versions of the business name\n"
+             f"- Focus primarily on .com domains, with some .net, .org, or .io alternatives\n"
+             f"- Output a numbered list of exactly 10 domain names\n\n"
+             f"Business Name: {business_name}\n\n"
+             f"Generate 10 domain names:"
        ))
     ]) 
 
